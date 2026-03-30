@@ -333,7 +333,10 @@ function isActive(href: string): boolean {
   });
 
   // Close desktop dropdowns when clicking outside
-  document.addEventListener('click', () => {
+  document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    // If the click is on a link inside a dropdown, let it navigate
+    if (target.closest('[data-desktop-dropdown-content] a')) return;
     document.querySelectorAll('[data-desktop-dropdown-content]').forEach((content) => {
       content.classList.add('hidden');
       content.closest('[data-desktop-dropdown]')?.querySelector('[data-chevron]')?.classList.remove('rotate-180');
