@@ -112,7 +112,7 @@ function isActive(href: string): boolean {
 
 <!-- Desktop Header -->
 <header class="fixed top-0 left-0 right-0 z-50 bg-background/98 border-b border-border hidden md:block">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <nav data-desktop-nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex h-20 items-center justify-between">
       <!-- Logo -->
       <a href="/" class="flex items-center gap-3 group">
@@ -147,28 +147,26 @@ function isActive(href: string): boolean {
                 </button>
                 <div
                   data-desktop-dropdown-content
-                  class="hidden absolute top-full right-0 pt-2 z-[100]"
+                  class="hidden absolute top-full right-0 mt-2 bg-background border border-border shadow-xl z-[100] rounded-md"
                 >
-                  <div class="bg-background border border-border shadow-xl rounded-md">
-                    {item.hasDropdown === "services" && (
-                      <div class="flex flex-col p-3 min-w-[220px]">
-                        {navServicesItems.map(svc => (
-                          <a href={svc.href} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
-                            {svc.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                    {item.hasDropdown === "areas" && (
-                      <div class="grid grid-cols-3 gap-x-2 gap-y-0 p-4 min-w-[520px]">
-                        {locations.map(loc => (
-                          <a href={`/location/${loc.slug}`} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
-                            {loc.name}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
+                  {item.hasDropdown === "services" && (
+                    <div class="flex flex-col p-3 min-w-[220px]">
+                      {navServicesItems.map(svc => (
+                        <a href={svc.href} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
+                          {svc.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                  {item.hasDropdown === "areas" && (
+                    <div class="grid grid-cols-3 gap-x-2 gap-y-0 p-4 min-w-[520px]">
+                      {locations.map(loc => (
+                        <a href={`/location/${loc.slug}`} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
+                          {loc.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             ) : (
@@ -309,14 +307,15 @@ function isActive(href: string): boolean {
   });
 
   // Desktop dropdown toggles
+  const desktopNav = document.querySelector('[data-desktop-nav]');
+
   document.querySelectorAll('[data-desktop-dropdown]').forEach((dropdown) => {
     const toggle = dropdown.querySelector('[data-desktop-dropdown-toggle]');
     const content = dropdown.querySelector('[data-desktop-dropdown-content]');
     const chevron = toggle?.querySelector('[data-chevron]');
     if (!toggle || !content) return;
 
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
+    toggle.addEventListener('click', () => {
       // Close all other dropdowns first
       document.querySelectorAll('[data-desktop-dropdown-content]').forEach((other) => {
         if (other !== content) {
@@ -327,18 +326,11 @@ function isActive(href: string): boolean {
       content.classList.toggle('hidden');
       chevron?.classList.toggle('rotate-180');
     });
-
-    dropdown.addEventListener('mouseleave', () => {
-      content.classList.add('hidden');
-      chevron?.classList.remove('rotate-180');
-    });
   });
 
-  // Close desktop dropdowns when clicking outside
-  document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    // If the click is on a link inside a dropdown, let it navigate
-    if (target.closest('[data-desktop-dropdown-content] a')) return;
+  // Close desktop dropdowns on outside mousedown (matches original React behavior)
+  document.addEventListener('mousedown', (e) => {
+    if (desktopNav && desktopNav.contains(e.target as Node)) return;
     document.querySelectorAll('[data-desktop-dropdown-content]').forEach((content) => {
       content.classList.add('hidden');
       content.closest('[data-desktop-dropdown]')?.querySelector('[data-chevron]')?.classList.remove('rotate-180');
