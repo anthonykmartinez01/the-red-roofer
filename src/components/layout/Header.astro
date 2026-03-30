@@ -147,26 +147,28 @@ function isActive(href: string): boolean {
                 </button>
                 <div
                   data-desktop-dropdown-content
-                  class="hidden absolute top-full right-0 mt-2 bg-background border border-border shadow-xl z-[100] rounded-md"
+                  class="hidden absolute top-full right-0 pt-2 z-[100]"
                 >
-                  {item.hasDropdown === "services" && (
-                    <div class="flex flex-col p-3 min-w-[220px]">
-                      {navServicesItems.map(svc => (
-                        <a href={svc.href} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
-                          {svc.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
-                  {item.hasDropdown === "areas" && (
-                    <div class="grid grid-cols-3 gap-x-2 gap-y-0 p-4 min-w-[520px]">
-                      {locations.map(loc => (
-                        <a href={`/location/${loc.slug}`} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
-                          {loc.name}
-                        </a>
-                      ))}
-                    </div>
-                  )}
+                  <div class="bg-background border border-border shadow-xl rounded-md">
+                    {item.hasDropdown === "services" && (
+                      <div class="flex flex-col p-3 min-w-[220px]">
+                        {navServicesItems.map(svc => (
+                          <a href={svc.href} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
+                            {svc.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                    {item.hasDropdown === "areas" && (
+                      <div class="grid grid-cols-3 gap-x-2 gap-y-0 p-4 min-w-[520px]">
+                        {locations.map(loc => (
+                          <a href={`/location/${loc.slug}`} class="block px-3 py-2 text-sm font-medium text-foreground hover:text-accent hover:bg-muted rounded transition-colors whitespace-nowrap">
+                            {loc.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             ) : (
