@@ -1,24 +1,32 @@
 ---
-import BaseLayout from '../components/layout/BaseLayout.astro';
+// No layout wrapper - standalone 404 page
+import '../styles/global.css';
 ---
 
-<BaseLayout
-  title="Page Not Found | The Red Roofer"
-  description="The page you're looking for doesn't exist."
->
-  <section class="bg-background py-24 md:py-40">
-    <div class="max-w-xl mx-auto px-4 sm:px-6 text-center">
-      <p class="text-8xl font-extrabold text-accent mb-6">404</p>
-      <h1 class="font-display font-extrabold text-3xl md:text-4xl text-foreground mb-4">Page Not Found</h1>
-      <p class="text-muted-foreground text-lg mb-8">
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Not Found | The Red Roofer</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+  </head>
+  <body class="bg-muted min-h-screen flex items-center justify-center">
+    <div class="text-center px-4">
+      <p class="text-6xl sm:text-8xl font-extrabold text-accent mb-4">404</p>
+      <h1 class="font-[family-name:var(--font-display)] text-2xl sm:text-3xl md:text-4xl font-extrabold text-foreground mb-3 uppercase tracking-tight">
+        Oops! Page not found
+      </h1>
+      <p class="text-muted-foreground text-base sm:text-lg mb-8 max-w-md mx-auto">
         Sorry, the page you're looking for doesn't exist or has been moved.
       </p>
       <a
         href="/"
-        class="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+        class="inline-flex items-center justify-center gap-2 bg-accent text-accent-foreground rounded-md font-bold uppercase tracking-wide hover:bg-accent/90 hover:scale-[1.02] hover:shadow-xl active:scale-[0.98] transition-all h-12 px-8 text-base"
       >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
         Return to Home
       </a>
     </div>
-  </section>
-</BaseLayout>
+  </body>
+</html>

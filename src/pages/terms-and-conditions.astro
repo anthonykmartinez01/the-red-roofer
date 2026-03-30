@@ -7,63 +7,88 @@ import BaseLayout from '../components/layout/BaseLayout.astro';
   description="Terms and conditions for The Red Roofer services."
   noIndex={true}
 >
-  <section class="bg-background py-16 md:py-24">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6">
-      <h1 class="font-display font-extrabold text-3xl md:text-4xl text-foreground mb-4">Terms &amp; Conditions</h1>
-      <p class="text-muted-foreground mb-10">Last updated: January 1, 2025</p>
+  <!-- Hero -->
+  <section class="hero-gradient py-12 sm:py-16 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <h1 class="font-[family-name:var(--font-display)] text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-foreground uppercase tracking-tight">
+        Terms &amp; Conditions
+      </h1>
+    </div>
+  </section>
 
-      <div class="space-y-10 text-foreground leading-relaxed">
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Agreement to Terms</h2>
-          <p class="text-muted-foreground">
-            By accessing or using The Red Roofer website and services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you may not use our services.
-          </p>
-        </div>
+  <!-- Content -->
+  <section class="py-12 sm:py-16 md:py-20 section-gradient">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto bg-card rounded-xl p-5 sm:p-6 md:p-8 card-shadow hover:shadow-xl transition-shadow">
+        <p class="text-muted-foreground text-sm mb-8">Last updated: January 1, 2025</p>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Services</h2>
-          <p class="text-muted-foreground">
-            The Red Roofer provides roofing, handyman, and general home improvement services in Little Elm, TX and the surrounding DFW metroplex. Our services include but are not limited to roof repair, roof installation, roof inspections, gutter services, interior and exterior painting, landscaping, fencing, and general home repairs.
-          </p>
-        </div>
+        <div class="space-y-8">
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Agreement to Terms
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              By accessing or using The Red Roofer website and services, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you may not use our services.
+            </p>
+          </div>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Estimates and Pricing</h2>
-          <p class="text-muted-foreground">
-            All estimates provided by The Red Roofer are based on the information available at the time of assessment. Estimates are not guaranteed final prices and may change based on actual conditions discovered during the course of work, material availability, or changes in project scope. Any changes to pricing will be communicated to you before additional work is performed.
-          </p>
-        </div>
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Services
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              The Red Roofer provides roofing, handyman, and general home improvement services in Little Elm, TX and the surrounding DFW metroplex. Our services include but are not limited to roof repair, roof installation, roof inspections, gutter services, interior and exterior painting, landscaping, fencing, and general home repairs.
+            </p>
+          </div>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Warranties</h2>
-          <p class="text-muted-foreground">
-            Workmanship warranties vary by service type and will be discussed with you before any work begins. Material warranties are provided by the manufacturer and are separate from our workmanship guarantee. Specific warranty terms will be outlined in your service agreement.
-          </p>
-        </div>
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Estimates and Pricing
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              All estimates provided by The Red Roofer are based on the information available at the time of assessment. Estimates are not guaranteed final prices and may change based on actual conditions discovered during the course of work, material availability, or changes in project scope. Any changes to pricing will be communicated to you before additional work is performed.
+            </p>
+          </div>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Limitation of Liability</h2>
-          <p class="text-muted-foreground">
-            To the fullest extent permitted by law, The Red Roofer shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of our services. Our total liability for any claim shall not exceed the amount paid by you for the specific service giving rise to the claim.
-          </p>
-        </div>
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Warranties
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              Workmanship warranties vary by service type and will be discussed with you before any work begins. Material warranties are provided by the manufacturer and are separate from our workmanship guarantee. Specific warranty terms will be outlined in your service agreement.
+            </p>
+          </div>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Governing Law</h2>
-          <p class="text-muted-foreground">
-            These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions.
-          </p>
-        </div>
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Limitation of Liability
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              To the fullest extent permitted by law, The Red Roofer shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of our services. Our total liability for any claim shall not exceed the amount paid by you for the specific service giving rise to the claim.
+            </p>
+          </div>
 
-        <div>
-          <h2 class="font-display font-extrabold text-xl md:text-2xl text-foreground mb-3">Contact Us</h2>
-          <p class="text-muted-foreground">
-            If you have any questions about these Terms and Conditions, please contact us:
-          </p>
-          <ul class="mt-3 text-muted-foreground space-y-1">
-            <li>Email: <a href="mailto:theredroofer@gmail.com" class="text-accent hover:underline">theredroofer@gmail.com</a></li>
-            <li>Phone: <a href="tel:+19402603197" class="text-accent hover:underline">+1 940-260-3197</a></li>
-          </ul>
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Governing Law
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              These Terms and Conditions shall be governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions.
+            </p>
+          </div>
+
+          <div>
+            <h2 class="font-[family-name:var(--font-display)] text-lg sm:text-xl font-bold text-foreground mb-3">
+              Contact Information
+            </h2>
+            <p class="text-muted-foreground text-sm sm:text-base leading-relaxed">
+              If you have any questions about these Terms and Conditions, please contact us:
+            </p>
+            <ul class="mt-3 text-muted-foreground text-sm sm:text-base space-y-1">
+              <li>Email: <a href="mailto:theredroofer@gmail.com" class="text-accent hover:underline">theredroofer@gmail.com</a></li>
+              <li>Phone: <a href="tel:+19402603197" class="text-accent hover:underline">(940) 260-3197</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

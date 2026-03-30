@@ -9,207 +9,143 @@ import wp6 from '../assets/gallery/work-preview-6.jpg';
 import wp7 from '../assets/gallery/work-preview-7.jpg';
 import wp8 from '../assets/gallery/work-preview-8.jpg';
 import wp9 from '../assets/gallery/work-preview-9.jpg';
-import before1 from '../assets/gallery/project1-before.jpg';
-import after1 from '../assets/gallery/project1-after.jpg';
 
-const images = [
-  { src: wp1.src, alt: 'Roofing project completed by The Red Roofer' },
-  { src: wp2.src, alt: 'Roof repair work in Little Elm, TX' },
-  { src: wp3.src, alt: 'Residential roofing installation' },
-  { src: wp4.src, alt: 'Handyman project completed in DFW metroplex' },
-  { src: wp5.src, alt: 'Home repair work by The Red Roofer' },
-  { src: wp6.src, alt: 'Roof replacement project in Little Elm' },
-  { src: wp7.src, alt: 'Professional roofing work in North Texas' },
-  { src: wp8.src, alt: 'Exterior home improvement project' },
-  { src: wp9.src, alt: 'Completed roofing and repair project' },
-  { src: before1.src, alt: 'Before photo of roofing project' },
-  { src: after1.src, alt: 'After photo of roofing project' },
+const projects = [
+  { id: 1, title: "Roof Replacement", description: "Complete shingle roof replacement", image: wp1.src },
+  { id: 2, title: "Shingle Installation", description: "New architectural shingle installation", image: wp2.src },
+  { id: 3, title: "Residential Roof", description: "Full roof installation project", image: wp3.src },
+  { id: 4, title: "Roof Ridge Work", description: "Ridge cap and ventilation installation", image: wp4.src },
+  { id: 5, title: "Aerial View Project", description: "Completed roof from drone view", image: wp5.src },
+  { id: 6, title: "Quality Craftsmanship", description: "Professional roofing work", image: wp6.src },
+  { id: 7, title: "Pipe Boot Installation", description: "Vent pipe flashing and boots", image: wp7.src },
+  { id: 8, title: "Custom Home Roof", description: "Large residential roof project", image: wp8.src },
+  { id: 9, title: "Complete Roof Job", description: "Full roof replacement with Red Roofer", image: wp9.src },
 ];
 ---
 
 <BaseLayout
-  title="Project Gallery | The Red Roofer Little Elm, TX"
-  description="Browse photos of roofing, handyman, and home repair projects completed by The Red Roofer in Little Elm, TX and the DFW metroplex."
+  title="The Red Roofer | Gallery - Our Work"
+  description="Browse our portfolio of completed roofing projects. The Red Roofer delivers reliable roof repairs and quality craftsmanship across the DFW metroplex!"
 >
-  <!-- Hero Section -->
-  <section class="bg-foreground py-16 md:py-24">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-background uppercase tracking-tight">
-        Our Work
-      </h1>
-      <p class="mt-4 text-lg md:text-xl text-background/80 max-w-2xl mx-auto">
-        Quality craftsmanship you can see. Browse our completed projects across Little Elm, TX and the DFW metroplex.
+  <!-- Hero -->
+  <section class="hero-gradient py-20 sm:py-24 md:py-32 relative overflow-hidden">
+    <div class="absolute bottom-10 left-20 w-48 sm:w-72 h-48 sm:h-72 bg-accent/20 blur-3xl"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 animate-on-scroll">
+      <div class="max-w-3xl">
+        <span class="inline-block px-3 sm:px-4 py-1 sm:py-1.5 bg-primary-foreground/10 text-primary-foreground/90 text-xs sm:text-sm font-bold uppercase tracking-widest mb-3 sm:mb-4">Our Portfolio</span>
+        <h1 class="font-[family-name:var(--font-display)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary-foreground mb-4 sm:mb-6 uppercase tracking-tight">
+          Our <span class="gradient-text">Work</span>
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-primary-foreground/70">
+          Browse our portfolio of completed projects. Every roof tells a story of quality craftsmanship.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Our Work -->
+  <section class="py-12 sm:py-16 md:py-20 bg-card border-b border-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+      <h2 class="font-[family-name:var(--font-display)] text-xl sm:text-2xl font-bold text-foreground mb-4">Our Roofing Projects</h2>
+      <p class="text-muted-foreground text-sm sm:text-base mb-4">
+        Below is a showcase of roof installations, repairs, and home improvement projects we've completed for homeowners across Little Elm, Aubrey, Frisco, and the DFW metroplex. Every project demonstrates our commitment to quality craftsmanship, attention to detail, and customer satisfaction. From complete roof replacements to storm damage repairs, we handle every job with the professionalism and precision our customers deserve.
+      </p>
+      <p class="text-muted-foreground text-sm sm:text-base">
+        Whether it's architectural shingles on a new residential build, emergency tarping after a hailstorm, or complex flashing work around chimneys and vents, our experienced team delivers results that last. Click any image to view it in full detail and see the quality of work you can expect from The Red Roofer.
       </p>
     </div>
   </section>
 
-  <!-- Description Section -->
-  <section class="py-12 md:py-16 bg-background">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-lg text-muted-foreground leading-relaxed">
-        From roof replacements and repairs to handyman projects and home improvements, every job we take on is completed with care and attention to detail. Take a look at some of our recent work below to see the quality and professionalism we bring to every project.
-      </p>
-    </div>
-  </section>
-
-  <!-- Gallery Grid -->
-  <section class="py-12 md:py-16 bg-secondary">
+  <!-- Gallery -->
+  <section class="py-16 sm:py-20 md:py-24 section-gradient">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-        {images.map((image, index) => (
-          <button
-            class="gallery-thumb group relative aspect-square overflow-hidden rounded-lg bg-card cursor-pointer border-0 p-0"
+      <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+        {projects.map((project, index) => (
+          <div
+            class="group cursor-pointer animate-on-scroll"
+            data-gallery-thumb
             data-index={index}
-            data-src={image.src}
-            aria-label={`View full size: ${image.alt}`}
+            data-src={project.image}
+            data-title={project.title}
+            style={`transition-delay: ${index * 60}ms`}
           >
-            <img
-              src={image.src}
-              alt={image.alt}
-              class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-              width="400"
-              height="400"
-            />
-          </button>
+            <div class="aspect-[4/3] bg-secondary overflow-hidden relative transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1 border-2 border-border group-hover:border-accent">
+              <img src={project.image} alt={project.title} loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" />
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Lightbox Modal -->
+  <!-- Modal -->
   <div
-    id="lightbox"
-    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 p-4"
-    role="dialog"
-    aria-modal="true"
-    aria-label="Image lightbox"
+    id="gallery-modal"
+    class="fixed inset-0 z-50 hidden bg-foreground/80 backdrop-blur-md items-center justify-center p-4"
   >
-    <button
-      id="lightbox-close"
-      class="absolute top-4 right-4 z-10 text-white hover:text-accent transition-colors"
-      aria-label="Close lightbox"
+    <div
+      id="gallery-modal-inner"
+      class="bg-card max-w-2xl w-full p-5 sm:p-8 relative animate-scale-in border-2 border-border"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-
-    <button
-      id="lightbox-prev"
-      class="absolute left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-accent transition-colors"
-      aria-label="Previous image"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-      </svg>
-    </button>
-
-    <button
-      id="lightbox-next"
-      class="absolute right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:text-accent transition-colors"
-      aria-label="Next image"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="size-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-      </svg>
-    </button>
-
-    <img
-      id="lightbox-img"
-      src=""
-      alt=""
-      class="max-h-[90vh] max-w-[90vw] object-contain rounded-lg"
-    />
+      <button
+        id="gallery-modal-close"
+        class="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 sm:p-2.5 hover:bg-secondary transition-colors z-10"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 sm:w-5 sm:h-5"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+      </button>
+      <div class="aspect-video bg-secondary flex items-center justify-center overflow-hidden relative">
+        <img id="gallery-modal-img" src="" alt="" class="w-full h-full object-cover" />
+      </div>
+    </div>
   </div>
 
-  <!-- CTA Section -->
-  <section class="py-16 md:py-20 bg-foreground">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <h2 class="text-3xl md:text-4xl font-extrabold text-background uppercase tracking-tight">
-        Ready to Start Your Project?
+  <!-- CTA -->
+  <section class="py-16 sm:py-20 bg-card border-t border-border/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-on-scroll">
+      <h2 class="font-[family-name:var(--font-display)] text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
+        Ready to Start <span class="gradient-text">Your Project</span>?
       </h2>
-      <p class="mt-4 text-lg text-background/80">
-        Let us bring the same quality craftsmanship to your home. Get a free, no-obligation quote today.
+      <p class="text-sm sm:text-base md:text-lg text-muted-foreground max-w-xl mx-auto mb-6 sm:mb-8">
+        Let us add your home to our gallery of satisfied customers.
       </p>
-      <div class="mt-8">
-        <a
-          href="/contact"
-          class="inline-flex items-center justify-center gap-2 bg-[hsl(14,100%,57%)] text-white font-extrabold uppercase tracking-tight px-8 py-4 rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all"
-        >
-          Get A Free Quote
-        </a>
-      </div>
+      <a href="/contact" class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-base font-bold uppercase tracking-wide ring-offset-background transition-all duration-300 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] h-12 px-8 transition-transform duration-200 hover:scale-[1.03]">
+        Get Started Today
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+      </a>
     </div>
   </section>
 </BaseLayout>
 
 <script>
-  const lightbox = document.getElementById('lightbox') as HTMLDivElement;
-  const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement;
-  const closeBtn = document.getElementById('lightbox-close') as HTMLButtonElement;
-  const prevBtn = document.getElementById('lightbox-prev') as HTMLButtonElement;
-  const nextBtn = document.getElementById('lightbox-next') as HTMLButtonElement;
-  const thumbs = document.querySelectorAll<HTMLButtonElement>('.gallery-thumb');
-
-  let currentIndex = 0;
-  const images: { src: string; alt: string }[] = [];
+  const modal = document.getElementById('gallery-modal') as HTMLDivElement;
+  const modalInner = document.getElementById('gallery-modal-inner') as HTMLDivElement;
+  const modalImg = document.getElementById('gallery-modal-img') as HTMLImageElement;
+  const modalClose = document.getElementById('gallery-modal-close') as HTMLButtonElement;
+  const thumbs = document.querySelectorAll('[data-gallery-thumb]');
 
   thumbs.forEach((thumb) => {
-    images.push({
-      src: thumb.dataset.src || '',
-      alt: thumb.querySelector('img')?.alt || '',
+    thumb.addEventListener('click', () => {
+      const src = (thumb as HTMLElement).dataset.src || '';
+      const title = (thumb as HTMLElement).dataset.title || '';
+      modalImg.src = src;
+      modalImg.alt = title;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
     });
   });
 
-  function openLightbox(index: number) {
-    currentIndex = index;
-    updateLightboxImage();
-    lightbox.classList.remove('hidden');
-    lightbox.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function closeLightbox() {
-    lightbox.classList.add('hidden');
-    lightbox.classList.remove('flex');
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
     document.body.style.overflow = '';
   }
 
-  function updateLightboxImage() {
-    const image = images[currentIndex];
-    if (image) {
-      lightboxImg.src = image.src;
-      lightboxImg.alt = image.alt;
-    }
-  }
-
-  function showPrev() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateLightboxImage();
-  }
-
-  function showNext() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateLightboxImage();
-  }
-
-  thumbs.forEach((thumb, index) => {
-    thumb.addEventListener('click', () => openLightbox(index));
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
   });
-
-  closeBtn.addEventListener('click', closeLightbox);
-  prevBtn.addEventListener('click', showPrev);
-  nextBtn.addEventListener('click', showNext);
-
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) closeLightbox();
-  });
-
   document.addEventListener('keydown', (e) => {
-    if (lightbox.classList.contains('hidden')) return;
-    if (e.key === 'Escape') closeLightbox();
-    if (e.key === 'ArrowLeft') showPrev();
-    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) closeModal();
   });
 </script>

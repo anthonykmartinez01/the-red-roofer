@@ -23,6 +23,12 @@
   --color-border: hsl(89 20% 88%);
   --color-input: hsl(89 20% 88%);
   --color-ring: hsl(14 100% 57%);
+
+  --hero-gradient: linear-gradient(135deg, hsl(149 51% 15%) 0%, hsl(149 51% 20%) 100%);
+  --section-gradient: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(89 20% 97%) 100%);
+  --card-shadow: 0 1px 3px 0 hsl(149 51% 20% / 0.1), 0 1px 2px -1px hsl(149 51% 20% / 0.1);
+  --card-shadow-hover: 0 10px 40px -10px hsl(149 51% 20% / 0.2);
+  --glow-accent: 0 0 60px 10px hsl(14 100% 57% / 0.15);
 }
 
 @layer base {
@@ -69,11 +75,90 @@
 }
 
 @layer utilities {
+  .hero-gradient {
+    background: var(--hero-gradient);
+  }
+
+  .section-gradient {
+    background: var(--section-gradient);
+  }
+
+  .card-shadow {
+    box-shadow: var(--card-shadow);
+  }
+
+  .card-shadow-hover {
+    box-shadow: var(--card-shadow-hover);
+  }
+
+  .glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+
   .gradient-text {
     background: linear-gradient(135deg, var(--color-accent) 0%, hsl(30 100% 75%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .animate-on-scroll-left {
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .animate-on-scroll-right {
+    opacity: 0;
+    transform: translateX(12px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .hover-glow {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--glow-accent);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.2s ease-out forwards;
   }
 
   .animate-on-scroll {
