@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { locations } from '../data/locations';
+import { categories } from '../data/categories';
+import { getCriticalServices } from '../data/services';
+
+const criticalServices = getCriticalServices();
+---
+
+<BaseLayout
+  title="Service Areas | The Red Roofer Little Elm, TX"
+  description="The Red Roofer serves Little Elm, TX and the DFW metroplex. View all our service areas including Frisco, Denton, Plano, McKinney, and more."
+>
+  <!-- Hero Section -->
+  <section class="bg-foreground py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-[family-name:var(--font-display)] font-extrabold text-background uppercase tracking-tight">
+        Service Areas
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-background/80 max-w-2xl mx-auto">
+        The Red Roofer proudly serves Little Elm, TX and communities throughout the DFW metroplex. Find your city below.
+      </p>
+    </div>
+  </section>
+
+  <!-- Locations Grid -->
+  <section class="py-12 md:py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {locations.map(location => (
+          <a
+            href={`/location/${location.slug}`}
+            class="bg-card p-5 sm:p-6 border-2 border-border rounded-lg hover-lift group block"
+          >
+            <div class="flex items-start justify-between gap-2">
+              <h2 class="text-lg font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground group-hover:text-accent transition-colors">
+                {location.name}, TX
+              </h2>
+              {location.isHomeBase && (
+                <span class="shrink-0 inline-flex items-center px-2 py-0.5 text-xs font-bold text-accent bg-accent/10 rounded-full uppercase tracking-wide">
+                  Home Base
+                </span>
+              )}
+            </div>
+            <p class="mt-2 text-sm text-muted-foreground line-clamp-3">
+              {location.description}
+            </p>
+            {location.neighborhoods.length > 0 && (
+              <div class="mt-3 flex flex-wrap gap-1.5">
+                {location.neighborhoods.slice(0, 3).map(n => (
+                  <span class="inline-block text-xs bg-secondary text-muted-foreground px-2 py-0.5 rounded-full">
+                    {n}
+                  </span>
+                ))}
+                {location.neighborhoods.length > 3 && (
+                  <span class="inline-block text-xs text-muted-foreground px-1">
+                    +{location.neighborhoods.length - 3} more
+                  </span>
+                )}
+              </div>
+            )}
+            <span class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+              View Details
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Available Section -->
+  <section class="py-12 md:py-16 bg-secondary">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h2 class="text-2xl md:text-3xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-4">
+        Services Available in Every City
+      </h2>
+      <p class="text-lg text-muted-foreground mb-8 max-w-3xl">
+        No matter which city you're in, The Red Roofer offers the same professional roofing, gutter, painting, and handyman services. Here's what we bring to your neighborhood.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        {criticalServices.map(service => (
+          <a
+            href={`/service/${service.slug}`}
+            class="bg-card p-5 sm:p-6 border-2 border-border rounded-lg hover-lift group block"
+          >
+            <h3 class="text-base font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground group-hover:text-accent transition-colors">
+              {service.name}
+            </h3>
+            <p class="mt-2 text-sm text-muted-foreground line-clamp-2">
+              {service.description}
+            </p>
+            <span class="mt-3 inline-flex items-center gap-1.5 text-sm font-semibold text-accent">
+              Learn More
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-8">
+        <h3 class="text-xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-4">
+          Browse All Categories
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {categories.map(cat => (
+            <a
+              href={`/category/${cat.slug}`}
+              class="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors py-1"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <span>{cat.name}</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-20 bg-foreground">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-[family-name:var(--font-display)] font-extrabold text-background uppercase tracking-tight">
+        Don't See Your City?
+      </h2>
+      <p class="mt-4 text-lg text-background/80">
+        We may still serve your area. Give us a call and we'll let you know if we can help.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-[hsl(14,100%,57%)] text-white font-extrabold uppercase tracking-tight px-8 py-4 rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all"
+        >
+          Get A Free Quote
+        </a>
+        <a
+          href="tel:+19402603197"
+          class="inline-flex items-center justify-center gap-2 text-background font-bold hover:text-accent transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Call (940) 260-3197</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

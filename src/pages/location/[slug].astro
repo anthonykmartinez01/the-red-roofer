@@ -1,0 +1,221 @@
+---
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import { locations, getLocationBySlug } from '../../data/locations';
+import { categories } from '../../data/categories';
+import { getCriticalServices } from '../../data/services';
+
+export function getStaticPaths() {
+  return locations.map(loc => ({
+    params: { slug: loc.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+const location = getLocationBySlug(slug!);
+if (!location) return Astro.redirect('/404');
+
+const nearbyLocations = location.nearbyIds
+  .map(id => locations.find(l => l.id === id))
+  .filter(Boolean);
+
+const criticalServices = getCriticalServices();
+
+const locationSchema = {
+  "@context": "https://schema.org",
+  "@type": "RoofingContractor",
+  "name": "The Red Roofer",
+  "url": `https://theredroofer.com/location/${location.slug}`,
+  "telephone": "+1-940-260-3197",
+  "areaServed": { "@type": "City", "name": location.name, "addressRegion": "TX" }
+};
+---
+
+<BaseLayout
+  title={location.metaTitle}
+  description={location.metaDescription}
+  schemaJson={locationSchema}
+>
+  <!-- Hero / Breadcrumb -->
+  <section class="bg-foreground py-12 md:py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav aria-label="Breadcrumb" class="mb-4">
+        <ol class="flex items-center gap-2 text-sm text-background/60">
+          <li><a href="/" class="hover:text-background transition-colors">Home</a></li>
+          <li><span>/</span></li>
+          <li><a href="/locations" class="hover:text-background transition-colors">Service Areas</a></li>
+          <li><span>/</span></li>
+          <li class="text-background font-medium">{location.name}</li>
+        </ol>
+      </nav>
+      <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-[family-name:var(--font-display)] font-extrabold text-background uppercase tracking-tight">
+        Roofing & Home Services in {location.name}, TX
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-background/80 max-w-3xl">
+        {location.description}
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <section class="py-12 md:py-16 bg-background">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+
+        <!-- Main Content Column -->
+        <div class="lg:col-span-2 space-y-10">
+          <!-- Location Description -->
+          <div>
+            <p class="text-lg text-muted-foreground leading-relaxed">
+              {location.content}
+            </p>
+          </div>
+
+          <!-- Neighborhoods -->
+          {location.neighborhoods.length > 0 && (
+            <div>
+              <h2 class="text-2xl md:text-3xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-6">
+                Neighborhoods We Serve
+              </h2>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {location.neighborhoods.map(neighborhood => (
+                  <li class="flex items-center gap-2 text-muted-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{neighborhood}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Landmarks -->
+          {location.landmarks.length > 0 && (
+            <div>
+              <h2 class="text-2xl md:text-3xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-6">
+                Local Landmarks
+              </h2>
+              <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                {location.landmarks.map(landmark => (
+                  <li class="flex items-center gap-2 text-muted-foreground">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-accent"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>{landmark}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <!-- Services Grid -->
+          <div>
+            <h2 class="text-2xl md:text-3xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-6">
+              Services in {location.name}
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {criticalServices.map(service => (
+                <a
+                  href={`/service/${service.slug}`}
+                  class="bg-card p-5 border-2 border-border rounded-lg hover-lift group block"
+                >
+                  <h3 class="text-base font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground group-hover:text-accent transition-colors">
+                    {service.name}
+                  </h3>
+                  <p class="mt-1 text-sm text-muted-foreground line-clamp-2">
+                    {service.description}
+                  </p>
+                </a>
+              ))}
+            </div>
+
+            <h3 class="text-xl font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mt-8 mb-4">
+              Browse by Category
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {categories.map(cat => (
+                <a
+                  href={`/category/${cat.slug}`}
+                  class="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors py-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                  <span>{cat.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="space-y-6">
+          <!-- Quick Contact Card -->
+          <div class="bg-card p-5 sm:p-6 border-2 border-border rounded-lg">
+            <h3 class="text-lg font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-4">
+              Quick Contact
+            </h3>
+            <div class="space-y-4">
+              <a
+                href="tel:+19402603197"
+                class="flex items-center gap-3 text-primary font-semibold hover:text-accent transition-colors"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>(940) 260-3197</span>
+              </a>
+              <a
+                href="/contact"
+                class="block w-full text-center bg-[hsl(14,100%,57%)] text-white font-bold py-3 rounded-lg hover:bg-[hsl(14,100%,50%)] transition-colors"
+              >
+                Get Free Quote
+              </a>
+            </div>
+          </div>
+
+          <!-- Nearby Locations Card -->
+          {nearbyLocations.length > 0 && (
+            <div class="bg-card p-5 sm:p-6 border-2 border-border rounded-lg">
+              <h3 class="text-lg font-[family-name:var(--font-display)] font-extrabold uppercase tracking-tight text-foreground mb-4">
+                Nearby Service Areas
+              </h3>
+              <ul class="space-y-2">
+                {nearbyLocations.map(loc => loc && (
+                  <li>
+                    <a
+                      href={`/location/${loc.slug}`}
+                      class="flex items-center gap-2 text-muted-foreground hover:text-accent transition-colors"
+                    >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                      <span>{loc.name}, TX</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-20 bg-foreground">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-[family-name:var(--font-display)] font-extrabold text-background uppercase tracking-tight">
+        Need a Roofer in {location.name}?
+      </h2>
+      <p class="mt-4 text-lg text-background/80">
+        Get a free, no-obligation quote for roofing and home services in {location.name}, TX.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-[hsl(14,100%,57%)] text-white font-extrabold uppercase tracking-tight px-8 py-4 rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all"
+        >
+          Get A Free Quote
+        </a>
+        <a
+          href="tel:+19402603197"
+          class="inline-flex items-center justify-center gap-2 text-background font-bold hover:text-accent transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Call (940) 260-3197</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

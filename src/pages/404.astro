@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found | The Red Roofer"
+  description="The page you're looking for doesn't exist."
+>
+  <section class="bg-background py-24 md:py-40">
+    <div class="max-w-xl mx-auto px-4 sm:px-6 text-center">
+      <p class="text-8xl font-extrabold text-accent mb-6">404</p>
+      <h1 class="font-display font-extrabold text-3xl md:text-4xl text-foreground mb-4">Page Not Found</h1>
+      <p class="text-muted-foreground text-lg mb-8">
+        Sorry, the page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground font-semibold rounded-lg hover:bg-accent/90 transition-colors"
+      >
+        Return to Home
+      </a>
+    </div>
+  </section>
+</BaseLayout>

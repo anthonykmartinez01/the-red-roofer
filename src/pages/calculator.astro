@@ -1,0 +1,202 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Roof Replacement Cost Calculator | The Red Roofer"
+  description="Estimate your roof replacement cost in Little Elm, TX with our free calculator. Get an instant estimate based on your roof size, pitch, and stories."
+>
+  <!-- Hero Section -->
+  <section class="bg-foreground py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-background uppercase tracking-tight">
+        Roof Replacement Cost Calculator
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-background/80 max-w-2xl mx-auto">
+        Get an instant estimate for your roof replacement project in Little Elm, TX and the DFW metroplex.
+      </p>
+    </div>
+  </section>
+
+  <!-- Calculator Section -->
+  <section class="py-12 md:py-20 bg-secondary">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-card rounded-xl shadow-lg border border-border p-6 md:p-10">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-foreground uppercase tracking-tight text-center mb-2">
+          Estimate Your Cost
+        </h2>
+        <p class="text-muted-foreground text-center mb-8">
+          Enter your roof details below for an instant estimate.
+        </p>
+
+        <form id="calc-form" class="space-y-6">
+          <!-- Square Footage -->
+          <div>
+            <label for="sqft" class="block text-sm font-semibold text-foreground mb-2">
+              Roof Square Footage
+            </label>
+            <input
+              type="number"
+              id="sqft"
+              name="sqft"
+              placeholder="e.g. 2000"
+              min="100"
+              max="50000"
+              required
+              class="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+            />
+          </div>
+
+          <!-- Roof Pitch -->
+          <div>
+            <label for="pitch" class="block text-sm font-semibold text-foreground mb-2">
+              Roof Pitch
+            </label>
+            <select
+              id="pitch"
+              name="pitch"
+              required
+              class="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+            >
+              <option value="" disabled selected>Select roof pitch</option>
+              <option value="1.0">4/12 (Low slope)</option>
+              <option value="1.05">5/12</option>
+              <option value="1.1">6/12 (Standard)</option>
+              <option value="1.15">7/12</option>
+              <option value="1.2">8/12</option>
+              <option value="1.3">9/12 (Steep)</option>
+              <option value="1.4">10/12</option>
+              <option value="1.5">11/12</option>
+              <option value="1.6">12/12 (Very steep)</option>
+            </select>
+          </div>
+
+          <!-- Number of Stories -->
+          <div>
+            <label for="stories" class="block text-sm font-semibold text-foreground mb-2">
+              Number of Stories
+            </label>
+            <select
+              id="stories"
+              name="stories"
+              required
+              class="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent transition-colors"
+            >
+              <option value="" disabled selected>Select number of stories</option>
+              <option value="1.0">1 Story</option>
+              <option value="1.15">2 Stories</option>
+              <option value="1.3">3 Stories</option>
+            </select>
+          </div>
+
+          <!-- Calculate Button -->
+          <button
+            type="submit"
+            class="w-full inline-flex items-center justify-center gap-2 bg-[hsl(14,100%,57%)] text-white font-extrabold uppercase tracking-tight px-6 py-4 rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all text-lg"
+          >
+            Calculate Estimate
+          </button>
+        </form>
+
+        <!-- Results Section (hidden initially) -->
+        <div id="results" class="hidden mt-10">
+          <div class="border-t border-border pt-8">
+            <h3 class="text-xl md:text-2xl font-extrabold text-foreground uppercase tracking-tight text-center mb-6">
+              Your Estimated Cost
+            </h3>
+
+            <div class="bg-secondary rounded-xl p-6 md:p-8 text-center mb-6">
+              <p class="text-muted-foreground text-sm uppercase tracking-wide font-semibold mb-2">
+                Estimated Range
+              </p>
+              <p class="text-3xl md:text-4xl font-extrabold text-foreground">
+                <span id="result-low"></span> &ndash; <span id="result-high"></span>
+              </p>
+            </div>
+
+            <div class="space-y-3 text-sm text-muted-foreground">
+              <p id="result-summary"></p>
+              <p id="result-details"></p>
+            </div>
+
+            <div class="mt-6 p-4 bg-background rounded-lg border border-border">
+              <p class="text-xs text-muted-foreground leading-relaxed">
+                <strong class="text-foreground">Disclaimer:</strong> This calculator provides a rough estimate only. Actual costs may vary based on material selection, roof complexity, existing damage, permit requirements, and other factors. Contact us for a free, accurate on-site quote.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-16 md:py-20 bg-foreground">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-background uppercase tracking-tight">
+        Want an Accurate Quote?
+      </h2>
+      <p class="mt-4 text-lg text-background/80">
+        Our estimates are free, and there is no obligation. Let a roofing expert assess your home for an accurate price.
+      </p>
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center gap-2 bg-white text-[hsl(149,51%,20%)] font-extrabold uppercase tracking-tight px-8 py-4 rounded-lg hover:scale-[1.02] hover:shadow-lg transition-all"
+        >
+          Get A Free Quote
+        </a>
+        <a
+          href="tel:+19402603197"
+          class="inline-flex items-center justify-center gap-2 border-2 border-white text-white font-extrabold uppercase tracking-tight px-8 py-4 rounded-lg hover:bg-white/10 transition-all"
+        >
+          Call (940) 260-3197
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const form = document.getElementById('calc-form') as HTMLFormElement;
+  const resultsDiv = document.getElementById('results') as HTMLDivElement;
+  const resultLow = document.getElementById('result-low') as HTMLSpanElement;
+  const resultHigh = document.getElementById('result-high') as HTMLSpanElement;
+  const resultSummary = document.getElementById('result-summary') as HTMLParagraphElement;
+  const resultDetails = document.getElementById('result-details') as HTMLParagraphElement;
+
+  function formatCurrency(value: number): string {
+    return '$' + Math.round(value).toLocaleString('en-US');
+  }
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const sqft = parseFloat((document.getElementById('sqft') as HTMLInputElement).value);
+    const pitchMult = parseFloat((document.getElementById('pitch') as HTMLSelectElement).value);
+    const storyMult = parseFloat((document.getElementById('stories') as HTMLSelectElement).value);
+
+    if (!sqft || !pitchMult || !storyMult) return;
+
+    // Calculate squares with 10% waste buffer
+    const squares = (sqft / 100) * 1.1;
+
+    const lowPerSquare = 375;
+    const highPerSquare = 400;
+
+    const low = squares * lowPerSquare * pitchMult * storyMult;
+    const high = squares * highPerSquare * pitchMult * storyMult;
+
+    resultLow.textContent = formatCurrency(low);
+    resultHigh.textContent = formatCurrency(high);
+
+    resultSummary.textContent =
+      `Based on ${sqft.toLocaleString('en-US')} sq ft of roof area, your project requires approximately ${squares.toFixed(1)} squares of material (including a 10% waste buffer).`;
+
+    resultDetails.textContent =
+      `This estimate factors in the selected roof pitch (${pitchMult}x multiplier) and ${storyMult === 1.0 ? '1 story' : storyMult === 1.15 ? '2 stories' : '3 stories'} (${storyMult}x multiplier). Pricing is based on ${formatCurrency(lowPerSquare)}\u2013${formatCurrency(highPerSquare)} per square.`;
+
+    resultsDiv.classList.remove('hidden');
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+</script>

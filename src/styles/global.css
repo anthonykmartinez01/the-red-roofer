@@ -1,0 +1,167 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  --color-background: hsl(0 0% 100%);
+  --color-foreground: hsl(149 51% 20%);
+  --color-card: hsl(0 0% 100%);
+  --color-card-foreground: hsl(149 51% 20%);
+  --color-popover: hsl(0 0% 100%);
+  --color-popover-foreground: hsl(149 51% 20%);
+  --color-primary: hsl(149 51% 20%);
+  --color-primary-foreground: hsl(0 0% 100%);
+  --color-secondary: hsl(89 30% 95%);
+  --color-secondary-foreground: hsl(149 51% 20%);
+  --color-muted: hsl(89 20% 94%);
+  --color-muted-foreground: hsl(92 30% 35%);
+  --color-accent: hsl(14 100% 57%);
+  --color-accent-foreground: hsl(0 0% 100%);
+  --color-destructive: hsl(0 84% 60%);
+  --color-destructive-foreground: hsl(0 0% 100%);
+  --color-border: hsl(89 20% 88%);
+  --color-input: hsl(89 20% 88%);
+  --color-ring: hsl(14 100% 57%);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  a, button, [role="button"], input, select, textarea {
+    touch-action: manipulation;
+  }
+
+  @media screen and (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="password"],
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-accent) 0%, hsl(30 100% 75%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .animate-on-scroll-scale {
+    opacity: 0;
+    transform: scale(0.97);
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    will-change: opacity, transform;
+  }
+
+  .animate-on-scroll-scale.visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .animate-on-scroll-scale {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .marquee,
+    .marquee-slow {
+      animation: none;
+    }
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
+
+  .hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px -10px hsl(149 51% 20% / 0.2);
+    border-color: var(--color-accent);
+  }
+
+  @media (hover: none) {
+    .hover-lift:hover {
+      transform: none;
+    }
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  .marquee {
+    display: flex;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee-slow {
+    display: flex;
+    animation: marquee 40s linear infinite;
+    will-change: transform;
+  }
+
+  .marquee:hover,
+  .marquee-slow:hover {
+    animation-play-state: paused;
+  }
+
+  .img-skeleton {
+    background: linear-gradient(90deg, var(--color-muted) 25%, hsl(92 30% 35% / 0.1) 50%, var(--color-muted) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}

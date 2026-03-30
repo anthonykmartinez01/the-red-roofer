@@ -1,0 +1,19 @@
+# The Red Roofer
+
+> Professional roofing contractor and handyman services in Little Elm, TX serving the DFW metroplex.
+
+The Red Roofer is a family-owned roofing contractor based in Little Elm, TX. We provide expert roof repairs, installations, inspections, gutter services, handyman work, fencing, landscaping, and chimney services across the DFW metroplex.
+
+## Pages
+
+- [Home](https://theredroofer.com/): Overview of services, reviews, and service areas
+- [Gallery](https://theredroofer.com/gallery/): Photos of completed roofing and home repair projects
+- [Calculator](https://theredroofer.com/calculator/): Roof replacement cost estimator
+- [Service Areas](https://theredroofer.com/locations/): Cities we serve in the DFW area
+- [Contact](https://theredroofer.com/contact/): Contact form and business information
+
+## Contact
+
+- Phone: +1 940-260-3197
+- Email: theredroofer@gmail.com
+- Location: Little Elm, TX & DFW Metroplex
